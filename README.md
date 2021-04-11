@@ -1,5 +1,5 @@
 # LaTex-Cookbook
-A LaTeX package that formats recipes in a pretty way. Easily generate nicely typeset recipes. 
+A LaTeX stylesheet that formats recipes in a pretty way. Use it to easily generate nicely typeset recipes. 
 
 ## How it works
 See the [run-down.pdf](https://github.com/JakeC007/LaTex-Cookbook/blob/main/resources/run-down.pdf) file for a full explanation. 
