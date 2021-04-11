@@ -6,6 +6,8 @@ See the run-down.pdf file for a full explanation.
 
 ## What does it look like?
 Glad you asked! Here is what a sample recipe looks like:
+
+
 ![](https://github.com/JakeC007/LaTex-Cookbook/blob/main/sample-recipe.png)
 
 ## Credits 
