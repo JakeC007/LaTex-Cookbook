@@ -1,0 +1,32 @@
+%% Recipe LATEX Format
+%% Adapted from TEX stack exchange user sgmoye
+%% Jake Chanenson
+%% April 11, 2021
+
+\documentclass{report}
+\usepackage{recipe}
+
+\begin{document}
+\frontmatter
+
+\newpage
+\chead{} 
+\tableofcontents %creates toc 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ADD RECIPES TO THE FILES UNDER EACH CHAPTER %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% The chapters structure keeps the main file clean 
+%% and allows you to swap out various files and keep things organized
+
+\input{how-to-use.tex} % comment this line out before downloading pdf
+
+\mainmatter
+%% TLDR: Write your recipes in the other files. Add new chapters here. 
+    \chapter{Main Dishes} %Name of chapter
+        \input{editMe.tex} %File where chapter data is
+    \chapter{Desserts}
+        \input{dessert.tex}
+    
+\end{document}

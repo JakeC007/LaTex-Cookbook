@@ -1,0 +1,303 @@
+%% Jake Chanenson
+%% April 11, 2021
+
+\lhead{}
+\rhead{INTRODUCTION}
+
+\chapter*{How To Use This File}
+
+\section*{Recipe Page Format:}
+
+\textbf{Top Left:} Name of the person who contributed the recipe. This is created via the \verb|\contrib{NAME HERE}| command. \\
+\vspace{.1 cm}
+
+\noindent \textbf{Top Center:} Recipe yield. This is created via \verb|\serves[x]{y}| command. x is an optional argument and overwrites ``Serves" and y is the yield of the recipe. For example:
+\begin{itemize}
+    \item \textit{Serves 10 Cookies} is \verb|\serves{10 Cookies}|
+    \item \textit{Makes 1 Loaf} is \verb|\serves[Makes]{1 Loaf}|
+\end{itemize} 
+\vspace{.1 cm}
+
+\noindent \textbf{Top Right:} Dietary indicator. Currently there are three dietary indicators 
+\begin{itemize}
+    \item Vegetarian ({\large\color{vegcolor}\textbf{V}}) created via \verb|\vegetarian|
+    \item Meat ({\large\color{meatcolor}\textbf{M}}) created via \verb|\meat|
+    \item Dairy ({\large\color{dairy}\textbf{D}}) created via \verb|\dairy|
+\end{itemize} 
+\vspace{.1 cm}
+
+\noindent \textbf{Upper Center:} Recipe Title. This is created via the \verb|\recipe[x]{y}| command. This command is the start of a new recipe. In addition to creating the title, it creates a new page. As such, it should be written first.
+\par The x argument will be dealt with in the next section. The y argument is the title of the recipe. \\ \textit{e.g.,} \verb|\recipe[x]{Easy Shortbread Biscuit}| \\
+\vspace{.1 cm}
+
+\noindent \textbf{Slightly Lower Center:} Where this recipe came from. This is also created with the \verb|\recipe[x]{y}| command. The previous section dealt with the title (the y argument). Now we will focus on the x argument. 
+
+\par x is an optional argument to credit where the recipe came from. \textit{e.g.,} \verb|\recipe[From Binging With Babish]{y}|.
+\par In summary, the full command to start a new recipe is \\ \verb|\recipe[From Binging With Babish]{Easy Shortbread Biscuit}| \\
+\vspace{.1 cm}
+
+\noindent \textbf{Bottom Left:} Prep time. Created via the \verb|\preptime[x]{y}| command. The x argument is optional and overwrites ``Prep Time." The y argument is how long the action will take. For example:
+\begin{itemize}
+    \item \textit{Prep Time: 20 min} is \verb|\preptime{20 min}|
+    \item \textit{Chill: 1 hr} is \verb|\preptime[Chill]{1 hr}|
+\end{itemize} 
+\vspace{.1 cm}
+
+\noindent \textbf{Bottom Center:} Page number. This is automatically generated\\
+\vspace{.1 cm}
+
+\noindent \textbf{Bottom Right:} Cook time. Created via the \verb|\cooktime[x]{y}| command. The x argument is optional and overwrites ``Cook Time." The y argument is how long the action will take. For example:
+\begin{itemize}
+    \item \textit{Cook Time: 20 min} is \verb|\cooktime{20 min}|
+    \item \textit{Grill: 35 min} is \verb|\cooktime[Grill]{35 min}|
+\end{itemize}
+
+\newpage
+\section*{The Ingredients Section}
+
+The first large section after the title is the ingredients section. It is created with \verb|\begin{ingreds}| and \verb|\end{ingreds}|. This is what is called an environment in \LaTeX. Meaning that everything encapsulated between the \verb|\begin{}| and \verb|\end{}| is subject to the formatting of the ingredients section. 
+
+\par The ingredients environment automatically generates the ingredients heading and auto balances the list of ingredients to create two even columns. Look at how the \LaTeX \ turns into rendered text:
+
+\begin{verbatim}
+\begin{ingreds}
+    5 Cups of Water
+    1 Teaspoon Ground Turmeric
+    \(\frac{1}{2}\) Teaspoon of Ground Cumin
+    1 Teaspoon of Ground Coriander
+    \(\frac{1}{2}\) Teaspoon of Cayenne Pepper
+    3 Tablespoons of Butter
+    1 Teaspoon Cumin Seeds
+    1 Medium Chopped Onion
+    1 Clove Garlic
+\end{ingreds}
+\end{verbatim}
+
+\begin{ingreds}
+    5 Cups of Water
+    1 Teaspoon Ground Turmeric
+    \(\frac{1}{2}\) Teaspoon of Ground Cumin
+    1 Teaspoon of Ground Coriander
+    3 Tablespoons of Butter
+    1 Teaspoon Cumin Seeds
+    1 Medium Chopped Onion
+    1 Clove Garlic
+\end{ingreds}
+
+\par You can also manually decide where the column break should go with the \verb|\columnbreak| command. This is helpful if you have a frosting or sauce in the recipe. Take for example this Tres Leches ingredients list:
+
+\begin{verbatim}
+\begin{ingreds}
+    1 Cup of All-Purpose Flour
+    1 \(\frac{1}{2}\) Teaspoons of Baking Powder
+    \(\frac{1}{4}\) Teaspoon of Salt
+    5 Large Eggs, separated
+    1 Cup of Granulated Sugar, divided
+    \(\frac{1}{3}\) Cup of Whole Milk
+    1 Teaspoon Vanilla Extract
+    12 oz. Can of Evaporated Milk
+    14 oz. Can of Sweetened Condensed Milk
+    \(\frac{1}{4}\) Cup of Whole Milk
+    \columnbreak
+    \ingredients[For the Whipped Topping:]
+    1 Pint of Heavy Whipping Cream, for Whipping
+    3 Tablespoons of Granulated Sugar or Powdered Sugar
+    \(\frac{1}{2}\) Teaspoon Vanilla Extract
+    Ground Cinnamon, for topping
+\end{ingreds}
+\end{verbatim}
+
+\begin{ingreds}
+    1 Cup of All-Purpose Flour
+    1 \(\frac{1}{2}\) Teaspoons of Baking Powder
+    \(\frac{1}{4}\) Teaspoon of Salt
+    5 Large Eggs, separated
+    1 Cup of Granulated Sugar, divided
+    \(\frac{1}{3}\) Cup of Whole Milk
+    1 Teaspoon Vanilla Extract
+    12 oz. Can of Evaporated Milk
+    14 oz. Can of Sweetened Condensed Milk
+    \(\frac{1}{4}\) Cup of Whole Milk
+    \columnbreak
+    \ingredients[For the Whipped Topping:]
+    1 Pint of Heavy Whipping Cream, for Whipping
+    3 Tablespoons of Granulated Sugar or Powdered Sugar
+    \(\frac{1}{2}\) Teaspoon Vanilla Extract
+    Ground Cinnamon, for topping
+\end{ingreds}
+
+\par Here you see we used the \verb|\columnbreak| command to manually decide where to break the columns. We then used the \verb|\ingredients[x]| command to add some special text within the ingredients list. Placement of the \verb|\ingredients[x]| command matters. \LaTeX \  will generate the special text at the exact point in the list that you tell it to. Thus, if you want two separate parts of the recipe on either side of the divider the format you should use is:
+
+\begin{verbatim}
+    <ingredient list 1>
+    \columnbreak
+    \ingredients[X]
+    <ingredient list 2>
+\end{verbatim}
+
+\newpage
+\section*{The Instructions Section}
+This section is also an environment defined by \verb|\begin{method}[x]| and \verb|\end{method}|. The instructions environment automatically generates the instructions header and has an optional argument, x, for any special text before the instruction steps start. Observe the following \LaTeX \ and rendered output:
+
+\begin{verbatim}
+\begin{method}[Preheat the oven to \temp{350}]
+    Create a three bowl breading station 
+    
+    Dip the tofu in the egg mixture
+    
+    Dip the tofu in the flour
+    
+    Roll the tofu in the breadcrumbs
+    
+    Arrange the tofu on a lined baking sheet 
+    and cook for at least 20 minutes
+    
+    Serve warm
+\end{method}
+\end{verbatim}
+
+\begin{method}[Preheat the oven to \temp{350}]
+    Create a three bowl breading station 
+    
+    Dip the tofu in the egg mixture
+    
+    Dip the tofu in the flour
+    
+    Roll the tofu in the breadcrumbs
+    
+    Arrange the tofu on a lined baking sheet and cook
+    for at least 20 minutes
+    
+    Serve warm
+\end{method}
+\vspace{.5 cm}
+\par Here we see the use of the optional x argument to tell the reader to preheat the oven. Of course, you can use the x argument for whatever you want. Within the optional argument we used the \verb|\temp{x}| command  which generates a temperature in Fahrenheit. To generate temperatures in Celsius use the \verb|\tempC{x}| command. 
+
+\par Formatting matters when using in the \verb|method| environment. Since the environment is interpreting text into an enumerated list, it keys in on empty lines as the space between items. Thus, clumping your instructions will yield only a single item on the list. Observe:
+
+\begin{verbatim}
+\begin{method}[Preheat the oven to \tempC{176.66}]
+    Create a three bowl breading station 
+    
+    Dip the tofu in the egg mixture.
+    Dip the tofu in the flour.
+    Roll the tofu in the breadcrumbs.
+    
+    Arrange the tofu on a lined baking sheet and cook
+    for at least 20 minutes
+    
+    Serve warm
+\end{method}
+\end{verbatim}
+
+\begin{method}[Preheat the oven to \tempC{176.66}]
+    Create a three bowl breading station 
+    
+    Dip the tofu in the egg mixture.
+    Dip the tofu in the flour.
+    Roll the tofu in the breadcrumbs.
+    
+    Arrange the tofu on a lined baking sheet and cook
+    for at least 20 minutes
+    
+    Serve warm
+\end{method}
+
+\subsection*{The Notes Section}
+Sometimes you may have a recipe that has information that doesn't belong in either the ingredients nor the instruction section. In this situation you may find it helpful to use the notes section. The note section is an environment defined by \verb|\begin{notes}| and \verb|\end{notes}|. It operates in exactly the same way that the instruction section does. Observe:
+
+\begin{verbatim}
+\begin{notes}
+    When using store bought filo dough you can ignore step 3.
+\end{notes}
+\end{verbatim}
+\begin{notes}
+    When using store bought filo dough you can ignore step 3.
+\end{notes}
+
+\newpage
+\section*{Sample Recipe Write Up }
+\subsection*{The \LaTeX}
+\begin{verbatim}
+\recipe[From the website allrecipes.com]{Eggplant Parmesan}
+\contrib{Aaron H.}
+\serves{10}
+\cooktime{35 minutes}
+\preptime{25 minutes}
+\vegetarian
+
+\begin{ingreds}
+    3 Eggplants, peeled and thinly sliced
+    2 Eggs, beaten
+    4 Cups of Italian Seasoned Bread Crumbs
+    6 Cups of Spaghetti Sauce, divided
+    \columnbreak %optional: manual split of the columns
+    16 oz. of Mozzarella Cheese, shredded and divided
+    \(\frac{1}{2}\) Cup of Grated Parmesan Cheese, divided
+    \(\frac{1}{2}\) Teaspoon of Dried Basil
+\end{ingreds}
+\vspace{.5in}
+\begin{method}[Preheat the oven to \temp{350}]
+    Dip eggplant slices in egg, then in bread crumbs. 
+    
+    Place in a single layer on a baking sheet. 
+    
+    Bake in preheated oven for 5 minutes on each side.
+    
+    In a 9x13 inch baking dish spread spaghetti sauce 
+    to cover the bottom. 
+    
+    Place a layer of eggplant slices in the sauce. Sprinkle 
+    with mozzarella and Parmesan cheeses. 
+    
+    Repeat with remaining ingredients, ending with the cheeses. 
+    
+    Sprinkle basil on top.
+    
+    Bake in preheated oven for 35 minutes, or until 
+    golden brown.
+\end{method}
+\end{verbatim}
+
+\recipe[From the website allrecipes.com]{SAMPLE: Eggplant Parmesan}
+\contrib{Aaron H.}
+\serves{10}
+\cooktime{35 minutes}
+\preptime{25 minutes}
+\vegetarian
+
+\begin{ingreds}
+    3 Eggplants, peeled and thinly sliced
+    2 Eggs, beaten
+    4 Cups of Italian Seasoned Bread Crumbs
+    6 Cups of Spaghetti Sauce, divided
+    \columnbreak
+    16 oz. of Mozzarella Cheese, shredded and divided
+    \(\frac{1}{2}\) Cup of Grated Parmesan Cheese, divided
+    \(\frac{1}{2}\) Teaspoon of Dried Basil
+\end{ingreds}
+
+\vspace{.5in}
+
+\begin{method}[Preheat the oven to \temp{350}]
+    Dip eggplant slices in egg, then in bread crumbs. 
+    
+    Place in a single layer on a baking sheet. 
+    
+    Bake in preheated oven for 5 minutes on each side.
+    
+    In a 9x13 inch baking dish spread spaghetti sauce 
+    to cover the bottom. 
+    
+    Place a layer of eggplant slices in the sauce. Sprinkle 
+    with mozzarella and Parmesan cheeses. 
+    
+    Repeat with remaining ingredients, ending with the cheeses. 
+    
+    Sprinkle basil on top.
+    
+    Bake in preheated oven for 35 minutes, or until 
+    golden brown.
+\end{method}
+
+\newpage

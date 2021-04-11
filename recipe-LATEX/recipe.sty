@@ -1,0 +1,186 @@
+%% Recipe LATEX Format
+%% Adapted from TEX stack exchange user sgmoye
+%% Jake Chanenson
+%% April 11, 2021
+
+%% Packages
+\RequirePackage{fancyhdr}
+\RequirePackage{multicol}
+\RequirePackage[hidelinks]{hyperref} %to hyperlink table of contents
+\RequirePackage[%
+    %a5paper,
+    papersize={5.5in,8.5in},
+    margin=0.75in,
+    top=0.75in,
+    bottom=0.75in,
+    %twoside
+    ]{geometry}
+
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{transparent}
+
+%% Page set up
+\raggedcolumns
+\setlength{\multicolsep}{0pt}
+\setlength{\columnseprule}{1pt}
+
+\makeatletter
+
+\newif\if@mainmatter \@mainmattertrue
+
+%% Borrowed from book.cls
+\newcommand\frontmatter{%
+    \cleardoublepage
+  \@mainmatterfalse
+  \pagenumbering{roman}}
+\newcommand\mainmatter{%
+    \cleardoublepage
+  \@mainmattertrue
+  \pagenumbering{arabic}}
+\makeatother
+
+%% Create some color presets
+\definecolor{vegcolor}{rgb}{0, .42, .24}
+\definecolor{meatcolor}{rgb}{0.82, 0.1, 0.26}
+\definecolor{dairy}{rgb}{0.57, 0.36, 0.51}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Commands For Top of Page %%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Type of Food Indicator (Meat, Veg, Dairy)
+\newcommand{\vegetarian}{%
+    \rhead{\large\color{vegcolor}\textbf{V}}}
+
+\newcommand{\meat}{%
+    \lhead{\large\color{meatcolor}\textbf{M}}}
+    
+\newcommand{\dairy}{%
+    \rhead{\large\color{dairy}\textbf{D}}}
+    
+%% Serve and contrib commands
+\newcommand{\serves}[2][Serves]{%
+    \chead{#1 #2}}
+    
+\newcommand{\contrib}[2][]{%
+    \lhead{#1#2}
+    }
+
+%% Recipe macro
+\newcommand{\recipe}[2][]{%
+    \newpage
+    \lhead{}%
+    \chead{}%
+    \rhead{}%
+    \lfoot{}%
+    \rfoot{}%
+    \section{#2}%
+    \if###1##%
+    \else
+        \begin{center}
+            \parbox{0.75\linewidth}{\raggedright\itshape#1}%
+        \end{center}
+    \fi
+}
+
+    
+%% Optional arguments for alternate names for these:
+\newcommand{\preptime}[2][Prep Time]{%
+    \lfoot{#1: #2}%
+}
+\newcommand{\cooktime}[2][Cook Time]{%
+    \rfoot{#1: #2}%
+}
+\newcommand{\temp}[1]{%
+    $#1^\circ$F}
+    
+\newcommand{\tempC}[1]{%
+    $#1^\circ$C}
+%% Optional argument is the width of the graphic, default = 1in
+\newcommand{\showit}[3][1in]{%
+    \begin{center}
+        \bigskip
+            \includegraphics[width=#1]{#2}%
+            \par
+            \medskip
+            \emph{#3}
+            \par
+        \end{center}%
+    }
+
+%% Optional argument for a  heading within the ingredients section
+\newcommand{\ingredients}[1][]{%
+    \if###1##%
+        {\color{red}\Large\textbf{Ingredients}}%
+    \else
+        \emph{#1}%
+    \fi
+}
+
+%% Use \obeylines to minimize markup
+\newenvironment{ingreds}{%
+    \parindent0pt
+    \noindent
+    \ingredients
+    \par
+    \smallskip
+    \begin{multicols}{2}
+    \leftskip1em
+    \rightskip0pt plus 3em
+    \parskip=0.25em
+    \obeylines
+    \everypar={\hangindent2em}
+}{%
+    \end{multicols}%
+    \medskip
+}
+
+%% for notes
+\newenvironment{notes}[1][]{%
+    \setcounter{stepnum}{0}
+    \noindent
+    {\color{red}\Large\textbf{Notes}}%
+    \par
+    \smallskip
+    \if###1##%
+    \else
+        \noindent
+        \emph{#1}
+        \par
+    \fi
+    \begingroup
+    \parindent0pt
+    \parskip0.25em
+        \leftskip2em
+    \everypar={\llap{\stepcounter{stepnum}\hbox to2em{\thestepnum.\hfill}}}
+}{%
+    \par
+    \endgroup}
+
+\newcounter{stepnum}
+
+%% Optional argument for an italicized pre-step
+%% Also use obeylines to minimize markup here as well
+\newenvironment{method}[1][]{%
+    \setcounter{stepnum}{0}
+    \noindent
+    {\color{red}\Large\textbf{Instructions}}%
+    \par
+    \smallskip
+    \if###1##%
+    \else
+        \noindent
+        \emph{#1}
+        \par
+    \fi
+    \begingroup
+    \parindent0pt
+    \parskip0.25em
+        \leftskip2em
+    \everypar={\llap{\stepcounter{stepnum}\hbox to2em{\thestepnum.\hfill}}}
+}{%
+    \par
+    \endgroup}
+
+\pagestyle{fancy}
