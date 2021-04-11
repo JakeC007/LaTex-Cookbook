@@ -2,13 +2,13 @@
 A LaTeX package that formats recipes in a pretty way. Easily generate nicely typeset recipes. 
 
 ## How it works
-See the run-down.pdf file for a full explanation. 
+See the [run-down.pdf](https://github.com/JakeC007/LaTex-Cookbook/blob/main/resources/run-down.pdf) file for a full explanation. 
 
 ## What does it look like?
 Glad you asked! Here is what a sample recipe looks like:
 
 
-![](https://github.com/JakeC007/LaTex-Cookbook/blob/main/sample-recipe.png)
+![](https://github.com/JakeC007/LaTex-Cookbook/blob/main/resources/sample-recipe.png)
 
 
 
